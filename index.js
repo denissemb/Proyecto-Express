@@ -1,7 +1,12 @@
 const express=require('express');
-const app=express();
+const morgan=require('morgan');
 
-app.listen(3000,()=>{
-console.log('server on port 3000');
+const app=express();
+app.use(morgan('dev'));
+
+app.set('port',process.env.PORT || 3000);
+
+app.listen(app.get('port'),()=>{
+console.log('server on port' +app.get('port'));
 
 });
